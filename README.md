@@ -1,14 +1,14 @@
 # One UI Home Magisk Module
 
 ## Descriptions
-- A home launcher app ported from Samsung Galaxy Z Flip 3 for any Android 9 until 12.
+- A home launcher app ported from Samsung Galaxy Z Flip 3.
 
 ## Screenshots
 -
 
 ## Requirements
 - Not in One UI ROM
-- Android 9 until 12
+- Android 6 until 12
 - Magisk installed
 
 ## Installation Guide
@@ -18,10 +18,8 @@
 ## Tested on
 - DotOS ROM Android 11 arm64
 
-## Optional
-
-## Troubleshootings
-- https://t.me/androidryukimods/114
+## Optionals and Troubleshootings
+- 
 
 ## Bug Report
 - https://t.me/androidryukimodsdiscussions/2618
@@ -36,4 +34,4 @@
 - https://www.paypal.me/reiryuki
 
 ## Download
-- 
+- https://www.pling.com/p/1626997/
