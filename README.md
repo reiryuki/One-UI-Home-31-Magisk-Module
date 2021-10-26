@@ -4,7 +4,7 @@
 - A home launcher app ported from Samsung Galaxy Z Flip 3.
 
 ## Screenshots
--
+- https://t.me/androidryukimods/240
 
 ## Requirements
 - Not in One UI ROM
