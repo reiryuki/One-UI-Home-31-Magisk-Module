@@ -19,7 +19,7 @@
 - DotOS ROM Android 11 arm64
 
 ## Troubleshootings
-- Changing recent provider to this launcher using QuickSwitch module or any other module is not recommended because recent apps won't be appeared and gesture navigation will be not working properly.
+- Changing recent provider to this launcher using QuickSwitch module or any other is not recommended because recent apps won't be appeared and gesture navigation will be not working properly. Use your default recent provider or any other supported recent provider. Swipe down for notification panel is doesn't work except this launcher is used as recent provider.
 
 ## Bug Report
 - https://t.me/androidryukimodsdiscussions/2618
