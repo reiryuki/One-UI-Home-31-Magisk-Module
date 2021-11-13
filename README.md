@@ -14,6 +14,7 @@
 ## Installation Guide
 - Install this module via Magisk app or Recovery
 - Reboot
+- Change default home to this launcher and enable notification access for One UI Home in your Settings app
 
 ## Tested on
 - DotOS ROM Android 11 arm64
