@@ -15,12 +15,13 @@
 - Install this module via Magisk app or Recovery
 - Reboot
 - Change default home to this launcher and enable notification access for One UI Home in your Settings app
+- Open Apps Edge app to enable recent gesture and home gesture
 
 ## Tested on
 - DotOS ROM Android 11 arm64
 
 ## Troubleshootings
-- Changing recent provider to this launcher using QuickSwitch module or any other is not recommended because recent apps won't be appeared and gesture navigation will be not working properly. Use your default recent provider or any other supported recent provider. Swipe down for notification panel is doesn't work except this launcher is used as recent provider.
+- https://t.me/androidryukimodsdiscussions/46153
 
 ## Bug Report
 - https://t.me/androidryukimodsdiscussions/2618
