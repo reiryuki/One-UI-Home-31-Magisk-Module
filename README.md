@@ -8,7 +8,7 @@
 
 ## Requirements
 - Not in One UI ROM
-- Android 10 and up
+- Android 8 and up
 - Magisk installed
 
 ## Installation Guide
