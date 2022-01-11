@@ -18,7 +18,7 @@
 - Open Apps Edge app to enable recent gesture and home gesture
 
 ## Tested on
-- DotOS ROM Android 11 arm64
+- DotOS ROM Android 11
 
 ## Troubleshootings
 - https://t.me/androidryukimodsdiscussions/46153
