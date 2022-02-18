@@ -7,7 +7,7 @@
 - https://t.me/androidryukimods/310
 
 ## Requirements
-- Not in One UI ROM
+- NOT in One UI nor Touchwiz ROM
 - Android 8 and up
 - Magisk installed
 
@@ -25,11 +25,11 @@
 
 ## Bug Report
 - https://t.me/androidryukimodsdiscussions/2618
-- If you don't do above, it will be closed immediately
+- If you don't do above, issues will be closed immediately
 
 ## Credits and contributors
-- Android Ryuki Mods Discussions Team
-- https://t.me/androidryukimodsdiscussions/25188
+- https://t.me/androidryukimodsdiscussions
+- https://t.me/androidappsportdevelopment
 
 ## Thanks for Donations
 - https://t.me/androidryukimodsdiscussions/2619
