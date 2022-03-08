@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <privapp-permissions package="com.samsung.android.app.appsedge">
+       <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+       <permission name="android.permission.REAL_GET_TASKS"/>
+       <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+       <permission name="com.samsung.android.permission.ADD_PAIR_APP_SHORTCUT"/>
+       <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+       <permission name="android.permission.MANAGE_USERS"/>
+       <permission name="android.permission.START_TASKS_FROM_RECENTS"/>
+       <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+    </privapp-permissions>
+</permissions>
+
+
+

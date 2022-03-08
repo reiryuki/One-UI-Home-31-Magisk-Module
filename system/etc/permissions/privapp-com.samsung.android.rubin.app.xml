@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <privapp-permissions package="com.samsung.android.rubin.app">
+        <permission name="android.permission.INSTALL_PACKAGES"/>
+        <permission name="android.permission.MEDIA_CONTENT_CONTROL"/>
+        <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+        <permission name="android.permission.REAL_GET_TASKS"/>
+        <permission name="com.samsung.android.rubin.inferenceengine.datalogging.LOG_WRITE"/>
+        <permission name="com.sec.android.diagmonagent.permission.DIAGMON" /> 
+        <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    </privapp-permissions>
+</permissions>
+
+
+
+
