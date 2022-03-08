@@ -8,7 +8,7 @@
 
 ## Requirements
 - NOT in One UI nor Touchwiz ROM
-- Android 8 and up
+- Android 10 and up
 - Magisk installed
 
 ## Installation Guide
@@ -19,6 +19,7 @@
 
 ## Tested on
 - DotOS ROM Android 11
+- AncientOS ROM Android 12
 
 ## Troubleshootings
 - https://t.me/androidryukimodsdiscussions/46153
