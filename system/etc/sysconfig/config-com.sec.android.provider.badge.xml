@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <hidden-api-whitelisted-app package="com.sec.android.provider.badge"/>
+    <allow-implicit-broadcast action="android.intent.action.BADGE_COUNT_UPDATE"/>
+</config>
+
