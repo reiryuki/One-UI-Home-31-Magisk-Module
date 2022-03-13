@@ -8,7 +8,7 @@
 
 ## Requirements
 - NOT in One UI nor Touchwiz ROM
-- Android 10 and up
+- Android 8 and up
 - Magisk installed
 
 ## Installation Guide
