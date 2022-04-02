@@ -15,13 +15,14 @@
 - Install this module via Magisk app or Recovery
 - Reboot
 - Change default home to this launcher and enable notification access for One UI Home in your Settings app
-- Open Apps Edge app to enable recent gesture and home gesture
 
 ## Tested on
 - DotOS ROM Android 11
 - AncientOS ROM Android 12
 
-## Troubleshootings
+## Optionals & Troubleshootings
+- https://t.me/androidryukimodsdiscussions/60861
+- https://t.me/androidryukimodsdiscussions/29836
 - https://t.me/androidryukimodsdiscussions/46153
 
 ## Bug Report
