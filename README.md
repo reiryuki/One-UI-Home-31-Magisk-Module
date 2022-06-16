@@ -19,6 +19,7 @@
 ## Tested on
 - DotOS ROM Android 11
 - AncientOS ROM Android 12
+- Nusantara ROM Android 12.1
 
 ## Optionals & Troubleshootings
 - https://t.me/androidryukimodsdiscussions/60861
@@ -36,6 +37,7 @@
 ## Thanks for Donations
 - https://t.me/androidryukimodsdiscussions/2619
 - https://www.paypal.me/reiryuki
+- https://ko-fi.com/reiryuki
 
 ## Download
 - https://www.pling.com/p/1626997/
