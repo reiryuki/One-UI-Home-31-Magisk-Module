@@ -1,5 +1,3 @@
-(
-
 MODPATH=${0%/*}
 API=`getprop ro.build.version.sdk`
 
@@ -99,14 +97,5 @@ if pm list packages | grep $PKG; then
   pm grant $PKG android.permission.READ_CONTACTS
   appops set $PKG SYSTEM_ALERT_WINDOW allow
 fi
-
-) 2>/dev/null
-
-
-
-
-
-
-
 
 
