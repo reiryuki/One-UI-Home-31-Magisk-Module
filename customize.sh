@@ -112,6 +112,7 @@ if [ "$RECENTS" == true ]; then
   ui_print "- $MODNAME recents provider will be activated"
   NAME=quickstepswitcher
   conflict
+  sed -i 's/#r//g' $MODPATH/post-fs-data.sh
   ui_print " "
 else
   rm -rf $MODPATH/system/product

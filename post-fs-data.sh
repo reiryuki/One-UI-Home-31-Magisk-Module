@@ -11,6 +11,9 @@ if [ -f $FILE ]; then
   sh $FILE
 fi
 
+# conflict
+#rtouch /data/adb/modules/quickstepswitcher/remove
+
 # cleaning
 FILE=$MODPATH/cleaner.sh
 if [ -f $FILE ]; then
