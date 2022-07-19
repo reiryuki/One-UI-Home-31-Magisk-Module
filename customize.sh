@@ -53,7 +53,8 @@ PKG="com.sec.android.app.launcher
      com.samsung.android.app.galaxyfinder
      com.sec.android.settings
      com.android.settings.intelligence
-     com.samsung.android.app.appsedge"
+     com.samsung.android.app.appsedge
+     org.blinksd.settings"
 if [ "$BOOTMODE" == true ]; then
   for PKGS in $PKG; do
     RES=`pm uninstall $PKGS`
@@ -110,7 +111,7 @@ NAME=oneuilauncher
 conflict
 if [ "$RECENTS" == true ]; then
   ui_print "- $MODNAME recents provider will be activated"
-  NAME=quickstepswitcher
+  NAME="quickstepswitcher quickswitch"
   conflict
   sed -i 's/#r//g' $MODPATH/post-fs-data.sh
   ui_print " "
@@ -256,11 +257,6 @@ APP=SettingsIntelligence
 for APPS in $APP; do
   hide_app
 done
-
-# permission
-ui_print "- Setting permission..."
-chcon -R u:object_r:vendor_overlay_file:s0 $MODPATH/system/product/overlay
-ui_print " "
 
 
 
