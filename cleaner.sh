@@ -10,7 +10,8 @@ PKG="com.sec.android.app.launcher*
      com.samsung.android.app.galaxyfinder
      com.sec.android.settings
      com.android.settings.intelligence
-     com.samsung.android.app.appsedge"
+     com.samsung.android.app.appsedge
+     org.blinksd.settings"
 for PKGS in $PKG; do
   rm -rf /data/user/*/$PKGS/cache/*
 done
