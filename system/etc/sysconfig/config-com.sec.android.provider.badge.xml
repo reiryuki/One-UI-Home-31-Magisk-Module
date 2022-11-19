@@ -3,4 +3,3 @@
     <hidden-api-whitelisted-app package="com.sec.android.provider.badge"/>
     <allow-implicit-broadcast action="android.intent.action.BADGE_COUNT_UPDATE"/>
 </config>
-
