@@ -5,6 +5,3 @@
         <permission name="android.permission.MANAGE_USERS"/>
     </privapp-permissions>
 </permissions>
-
-
-

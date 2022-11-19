@@ -7,5 +7,3 @@
         <permission name="com.samsung.android.permission.sdk.command.ACCESS_COMMANDS"/>
     </privapp-permissions>
 </permissions>
-
-

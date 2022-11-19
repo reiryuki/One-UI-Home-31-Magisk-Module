@@ -52,7 +52,3 @@
         <permission name="android.permission.PROVIDE_TRUST_AGENT"/>
     </privapp-permissions>
 </permissions>
-
-
-
-

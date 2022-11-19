@@ -14,11 +14,7 @@
         <permission name="com.samsung.android.providers.media.READ"/>
         <permission name="android.permission.PACKAGE_USAGE_STATS"/>
         <permission name="android.permission.READ_SEARCH_INDEXABLES"/>
-        <!-- For Android 9 and bellow -->
+        <!-- Android 9 and bellow -->
         <permission name="android.permission.READ_FRAME_BUFFER"/>
     </privapp-permissions>
 </permissions>
-
-
-
-

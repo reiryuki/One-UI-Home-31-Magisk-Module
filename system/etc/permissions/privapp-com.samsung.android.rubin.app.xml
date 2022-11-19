@@ -10,7 +10,3 @@
         <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
     </privapp-permissions>
 </permissions>
-
-
-
-
