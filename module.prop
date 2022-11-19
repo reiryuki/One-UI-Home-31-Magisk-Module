@@ -1,8 +1,8 @@
 id=OneUIHome
 name=One UI Home
-version=v1.10-beta.2
+version=v1.10
 versionCode=10
 author=Rei Ryuki the Fixer
 description=One UI Home launcher app by Samsung Electronics Co., Ltd. ported for any Android 8 and up.
-# BadgeSettings.apk by @KaldirimMuhendisi
+
 
