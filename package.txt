@@ -1,0 +1,5 @@
+com.sec.android.app.launcher
+com.sec.android.provider.badge
+com.samsung.android.rubin.app
+com.samsung.android.app.galaxyfinder
+org.blinksd.settings

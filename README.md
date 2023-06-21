@@ -2,13 +2,13 @@
 
 ## DISCLAIMER
 - One UI apps are owned by Samsung™.
-- The MIT license specified here is for the Magisk Module, not for One UI apps.
+- The MIT license specified here is for the Magisk Module only, not for One UI apps.
 
 ## Descriptions
 - Home launcher app by Samsung Electronics Co., Ltd. ported and integrated as a Magisk Module for all supported and rooted devices with Magisk
 
 ## Sources
-- apkmirror.com com.sec.android.app.launcher, com.samsung.android.rubin.app, com.samsung.android.app.galaxyfinder, & com.sec.android.provider.badge Samsung Electronics Co., Ltd.
+- https://apkmirror.com com.sec.android.app.launcher, com.samsung.android.rubin.app, com.samsung.android.app.galaxyfinder, & com.sec.android.provider.badge Samsung Electronics Co., Ltd.
 - https://dumps.tadiphone.dev/dumps/samsung/beyond1q beyond1qltesq-user-11-RP1A.200720.012-G973USQU6GUH4-release-keys
 - https://dumps.tadiphone.dev/dumps/samsung/p3s p3sxxx-user-12-SP1A.210812.003-G998BXXU3ZUID-release-keys
 - BadgeSettings.apk by @KaldirimMuhendisi
@@ -19,11 +19,12 @@
 ## Requirements
 - NOT in One UI nor Touchwiz ROM
 - Android 8 and up
-- Magisk installed
+- Magisk or KernelSU installed
 
 ## Installation Guide & Download Link
-- Install this module https://www.pling.com/p/1626997/ via Magisk app or Recovery
+- Install this module https://www.pling.com/p/1626997/ via Magisk app or KernelSU app or Recovery if Magisk installed
 - Reboot
+- If you are using KernelSU, you need to allow superuser list manually all package name listed in package.txt (and your home launcher app also) (enable show system apps) and reboot after
 - Change your default home to this launcher via Settings app
 
 ## Tested on
@@ -33,7 +34,7 @@
 - Android 13 AOSP ROM
 
 ## Known Issue
-- Widgets list does not showed up in Android 13 AOSP ROM except a keyword is typed in the search board
+- Widgets list does not showed up in Android 13 except a keyword is typed in the search board
 
 ## Optionals & Troubleshootings
 - https://t.me/androidryukimodsdiscussions/60861

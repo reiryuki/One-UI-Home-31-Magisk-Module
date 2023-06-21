@@ -1,30 +1,16 @@
 # space
-if [ "$BOOTMODE" == true ]; then
+ui_print " "
+
+# log
+if [ "$BOOTMODE" != true ]; then
+  FILE=/sdcard/$MODID\_recovery.log
+  ui_print "- Log will be saved at $FILE"
+  exec 2>$FILE
   ui_print " "
 fi
 
-# magisk
-if [ -d /sbin/.magisk ]; then
-  MAGISKTMP=/sbin/.magisk
-else
-  MAGISKTMP=`realpath /dev/*/.magisk`
-fi
-
-# path
-if [ "$BOOTMODE" == true ]; then
-  MIRROR=$MAGISKTMP/mirror
-else
-  MIRROR=
-fi
-SYSTEM=`realpath $MIRROR/system`
-PRODUCT=`realpath $MIRROR/product`
-VENDOR=`realpath $MIRROR/vendor`
-SYSTEM_EXT=`realpath $MIRROR/system/system_ext`
-ODM=`realpath /odm`
-MY_PRODUCT=`realpath /my_product`
-
-# optionals
-OPTIONALS=/sdcard/optionals.prop
+# run
+. $MODPATH/function.sh
 
 # info
 MODVER=`grep_prop version $MODPATH/module.prop`
@@ -32,8 +18,15 @@ MODVERCODE=`grep_prop versionCode $MODPATH/module.prop`
 ui_print " ID=$MODID"
 ui_print " Version=$MODVER"
 ui_print " VersionCode=$MODVERCODE"
-ui_print " MagiskVersion=$MAGISK_VER"
-ui_print " MagiskVersionCode=$MAGISK_VER_CODE"
+if [ "$KSU" == true ]; then
+  ui_print " KSUVersion=$KSU_VER"
+  ui_print " KSUVersionCode=$KSU_VER_CODE"
+  ui_print " KSUKernelVersionCode=$KSU_KERNEL_VER_CODE"
+  sed -i 's|#k||g' $MODPATH/post-fs-data.sh
+else
+  ui_print " MagiskVersion=$MAGISK_VER"
+  ui_print " MagiskVersionCode=$MAGISK_VER_CODE"
+fi
 ui_print " "
 
 # sdk
@@ -48,43 +41,51 @@ else
   ui_print " "
 fi
 
-# mount
-if [ "$BOOTMODE" != true ]; then
-  mount -o rw -t auto /dev/block/bootdevice/by-name/cust /vendor
-  mount -o rw -t auto /dev/block/bootdevice/by-name/vendor /vendor
-  mount -o rw -t auto /dev/block/bootdevice/by-name/persist /persist
-  mount -o rw -t auto /dev/block/bootdevice/by-name/metadata /metadata
+# recovery
+mount_partitions_in_recovery
+
+# magisk
+magisk_setup
+
+# path
+SYSTEM=`realpath $MIRROR/system`
+PRODUCT=`realpath $MIRROR/product`
+VENDOR=`realpath $MIRROR/vendor`
+SYSTEM_EXT=`realpath $MIRROR/system_ext`
+if [ "$BOOTMODE" == true ]; then
+  if [ ! -d $MIRROR/odm ]; then
+    mount_odm_to_mirror
+  fi
+  if [ ! -d $MIRROR/my_product ]; then
+    mount_my_product_to_mirror
+  fi
+fi
+ODM=`realpath $MIRROR/odm`
+MY_PRODUCT=`realpath $MIRROR/my_product`
+
+# optionals
+OPTIONALS=/sdcard/optionals.prop
+if [ ! -f $OPTIONALS ]; then
+  touch $OPTIONALS
 fi
 
-# sepolicy.rule
-FILE=$MODPATH/sepolicy.sh
-DES=$MODPATH/sepolicy.rule
-if [ -f $FILE ] && [ "`grep_prop sepolicy.sh $OPTIONALS`" != 1 ]; then
+# sepolicy
+FILE=$MODPATH/sepolicy.rule
+DES=$MODPATH/sepolicy.pfsd
+if [ "`grep_prop sepolicy.sh $OPTIONALS`" == 1 ]\
+&& [ -f $FILE ]; then
   mv -f $FILE $DES
-  sed -i 's/magiskpolicy --live "//g' $DES
-  sed -i 's/"//g' $DES
 fi
 
 # cleaning
 ui_print "- Cleaning..."
-PKG="com.sec.android.app.launcher
-     com.sec.android.provider.badge
-     com.samsung.android.rubin.app
-     com.samsung.android.app.galaxyfinder
-     com.sec.android.settings
-     com.android.settings.intelligence
-     com.samsung.android.app.appsedge
-     org.blinksd.settings"
+PKG=`cat $MODPATH/package.txt`
 if [ "$BOOTMODE" == true ]; then
   for PKGS in $PKG; do
-    RES=`pm uninstall $PKGS`
+    RES=`pm uninstall $PKGS 2>/dev/null`
   done
 fi
-rm -rf /metadata/magisk/$MODID
-rm -rf /mnt/vendor/persist/magisk/$MODID
-rm -rf /persist/magisk/$MODID
-rm -rf /data/unencrypted/magisk/$MODID
-rm -rf /cache/magisk/$MODID
+remove_sepolicy_rule
 ui_print " "
 
 # function
@@ -108,17 +109,22 @@ for NAMES in $NAME; do
   rm -rf /persist/magisk/$NAMES
   rm -rf /data/unencrypted/magisk/$NAMES
   rm -rf /cache/magisk/$NAMES
+  rm -rf /cust/magisk/$NAMES
 done
 }
+
+# conflict
+NAME=oneuilauncher
+conflict
 
 # recents
 if [ "`grep_prop one.recents $OPTIONALS`" == 1 ]; then
   RECENTS=true
-  if [ "$API" == 30 ] || [ "$API" == 29 ]; then
+  if [ "$API" == 30 ]; then
     ui_print "- Using legacy $MODNAME version"
     cp -rf $MODPATH/system_11/* $MODPATH/system
     ui_print " "
-  elif [ "$API" -le 28 ] || [ "$API" -ge 33 ]; then
+  elif [ "$API" -lt 30 ]; then
     ui_print "- $MODNAME recents provider doesn't support the current Android version"
     RECENTS=false
     ui_print " "
@@ -127,10 +133,6 @@ else
   RECENTS=false
 fi
 rm -rf $MODPATH/system_11
-
-# conflict
-NAME=oneuilauncher
-conflict
 if [ "$RECENTS" == true ]; then
   ui_print "- $MODNAME recents provider will be activated"
   ui_print "  Quick Switch module will be disabled"
@@ -161,7 +163,7 @@ if [ "`grep_prop data.cleanup $OPTIONALS`" == 1 ]; then
   ui_print "- Cleaning-up $MODID data..."
   cleanup
   ui_print " "
-elif [ -d $DIR ] && ! grep -Eq "$MODNAME" $FILE; then
+elif [ -d $DIR ] && ! grep -q "$MODNAME" $FILE; then
   ui_print "- Different version detected"
   ui_print "  Cleaning-up $MODID data..."
   cleanup
@@ -170,29 +172,28 @@ fi
 
 # function
 permissive_2() {
-sed -i '1i\
-SELINUX=`getenforce`\
-if [ "$SELINUX" == Enforcing ]; then\
-  magiskpolicy --live "permissive *"\
-fi\' $MODPATH/post-fs-data.sh
+sed -i 's|#2||g' $MODPATH/post-fs-data.sh
 }
 permissive() {
-SELINUX=`getenforce`
-if [ "$SELINUX" == Enforcing ]; then
-  setenforce 0
-  SELINUX=`getenforce`
-  if [ "$SELINUX" == Enforcing ]; then
+FILE=/sys/fs/selinux/enforce
+SELINUX=`cat $FILE`
+if [ "$SELINUX" == 1 ]; then
+  if ! setenforce 0; then
+    echo 0 > $FILE
+  fi
+  SELINUX=`cat $FILE`
+  if [ "$SELINUX" == 1 ]; then
     ui_print "  Your device can't be turned to Permissive state."
     ui_print "  Using Magisk Permissive mode instead."
     permissive_2
   else
-    setenforce 1
-    sed -i '1i\
-SELINUX=`getenforce`\
-if [ "$SELINUX" == Enforcing ]; then\
-  setenforce 0\
-fi\' $MODPATH/post-fs-data.sh
+    if ! setenforce 1; then
+      echo 1 > $FILE
+    fi
+    sed -i 's|#1||g' $MODPATH/post-fs-data.sh
   fi
+else
+  sed -i 's|#1||g' $MODPATH/post-fs-data.sh
 fi
 }
 
@@ -212,59 +213,37 @@ fi
 # function
 hide_oat() {
 for APPS in $APP; do
-  mkdir -p `find $MODPATH/system -type d -name $APPS`/oat
-  touch `find $MODPATH/system -type d -name $APPS`/oat/.replace
+  REPLACE="$REPLACE
+  `find $MODPATH/system -type d -name $APPS | sed "s|$MODPATH||"`/oat"
 done
-}
-replace_dir() {
-if [ -d $DIR ]; then
-  mkdir -p $MODDIR
-  touch $MODDIR/.replace
-fi
-}
-hide_app() {
-DIR=$SYSTEM/app/$APPS
-MODDIR=$MODPATH/system/app/$APPS
-replace_dir
-DIR=$SYSTEM/priv-app/$APPS
-MODDIR=$MODPATH/system/priv-app/$APPS
-replace_dir
-DIR=$PRODUCT/app/$APPS
-MODDIR=$MODPATH/system/product/app/$APPS
-replace_dir
-DIR=$PRODUCT/priv-app/$APPS
-MODDIR=$MODPATH/system/product/priv-app/$APPS
-replace_dir
-DIR=$MY_PRODUCT/app/$APPS
-MODDIR=$MODPATH/system/product/app/$APPS
-replace_dir
-DIR=$MY_PRODUCT/priv-app/$APPS
-MODDIR=$MODPATH/system/product/priv-app/$APPS
-replace_dir
-DIR=$PRODUCT/preinstall/$APPS
-MODDIR=$MODPATH/system/product/preinstall/$APPS
-replace_dir
-DIR=$SYSTEM_EXT/app/$APPS
-MODDIR=$MODPATH/system/system_ext/app/$APPS
-replace_dir
-DIR=$SYSTEM_EXT/priv-app/$APPS
-MODDIR=$MODPATH/system/system_ext/priv-app/$APPS
-replace_dir
-DIR=$VENDOR/app/$APPS
-MODDIR=$MODPATH/system/vendor/app/$APPS
-replace_dir
-DIR=$VENDOR/euclid/product/app/$APPS
-MODDIR=$MODPATH/system/vendor/euclid/product/app/$APPS
-replace_dir
 }
 
 # hide
 APP="`ls $MODPATH/system/priv-app` `ls $MODPATH/system/app`"
 hide_oat
-APP=SettingsIntelligence
-for APPS in $APP; do
-  hide_app
-done
+
+# function
+check_library() {
+NAME=com.samsung.device
+if [ "$BOOTMODE" == true ]\
+&& ! pm list libraries | grep -q $NAME; then
+  echo 'rm -rf /data/user*/*/com.android.vending/*' >> $MODPATH/cleaner.sh
+  ui_print "- Play Store data will be cleared automatically on the next"
+  ui_print "  reboot"
+  ui_print " "
+fi
+}
+
+# unmount
+if [ "$BOOTMODE" == true ] && [ ! "$MAGISKPATH" ]; then
+  unmount_mirror
+fi
+
+
+
+
+
+
 
 
 
