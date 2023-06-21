@@ -1,6 +1,5 @@
 mount -o rw,remount /data
 MODPATH=${0%/*}
-ABI=`getprop ro.product.cpu.abi`
 
 # log
 exec 2>$MODPATH/debug-pfsd.log
@@ -82,13 +81,25 @@ if [ -f $FILE ]; then
 fi
 
 # permission
+DIRS=`find $MODPATH/vendor\
+           $MODPATH/system/vendor -type d`
+for DIR in $DIRS; do
+  chown 0.2000 $DIR
+done
 if [ -L $MODPATH/system/product ]\
 && [ -d $MODPATH/product ]; then
   chcon -R u:object_r:vendor_overlay_file:s0 $MODPATH/product/overlay
 else
   chcon -R u:object_r:vendor_overlay_file:s0 $MODPATH/system/product/overlay
 fi
-
+if [ -L $MODPATH/system/vendor ]\
+&& [ -d $MODPATH/vendor ]; then
+  chcon -R u:object_r:vendor_file:s0 $MODPATH/vendor
+  chcon -R u:object_r:vendor_overlay_file:s0 $MODPATH/vendor/overlay
+else
+  chcon -R u:object_r:vendor_file:s0 $MODPATH/system/vendor
+  chcon -R u:object_r:vendor_overlay_file:s0 $MODPATH/system/vendor/overlay
+fi
 
 
 

@@ -41,28 +41,6 @@ else
   ui_print " "
 fi
 
-# recovery
-mount_partitions_in_recovery
-
-# magisk
-magisk_setup
-
-# path
-SYSTEM=`realpath $MIRROR/system`
-PRODUCT=`realpath $MIRROR/product`
-VENDOR=`realpath $MIRROR/vendor`
-SYSTEM_EXT=`realpath $MIRROR/system_ext`
-if [ "$BOOTMODE" == true ]; then
-  if [ ! -d $MIRROR/odm ]; then
-    mount_odm_to_mirror
-  fi
-  if [ ! -d $MIRROR/my_product ]; then
-    mount_my_product_to_mirror
-  fi
-fi
-ODM=`realpath $MIRROR/odm`
-MY_PRODUCT=`realpath $MIRROR/my_product`
-
 # optionals
 OPTIONALS=/sdcard/optionals.prop
 if [ ! -f $OPTIONALS ]; then
@@ -222,6 +200,13 @@ done
 APP="`ls $MODPATH/system/priv-app` `ls $MODPATH/system/app`"
 hide_oat
 
+# overlay
+if [ "$RECENTS" == true ] && [ ! -d /product/overlay ]; then
+  ui_print "- Using /vendor/overlay/ instead of /product/overlay/"
+  mv -f $MODPATH/system/product $MODPATH/system/vendor
+  ui_print " "
+fi
+
 # function
 check_library() {
 NAME=com.samsung.device
@@ -234,10 +219,7 @@ if [ "$BOOTMODE" == true ]\
 fi
 }
 
-# unmount
-if [ "$BOOTMODE" == true ] && [ ! "$MAGISKPATH" ]; then
-  unmount_mirror
-fi
+
 
 
 
