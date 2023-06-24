@@ -34,7 +34,7 @@
 - Android 13 AOSP ROM
 
 ## Known Issue
-- Widgets list does not showed up in Android 13 except a keyword is typed in the search board
+- Widgets list does not show up in Android 13 except a keyword is typed in the search board
 
 ## Optionals & Troubleshootings
 - https://t.me/androidryukimodsdiscussions/60861
