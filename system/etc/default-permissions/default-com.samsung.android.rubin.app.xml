@@ -1,9 +1,13 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes' ?>
 <exceptions>
-    <exception package="com.sec.android.app.launcher">
-        <permission name="android.permission.READ_PHONE_STATE" fixed="false"/>
-        <permission name="android.permission.CALL_PHONE" fixed="false"/>
+    <exception package="com.samsung.android.rubin.app">
+        <permission name="android.permission.READ_CALENDAR" fixed="false"/>
         <permission name="android.permission.READ_CONTACTS" fixed="false"/>
+        <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false"/>
+        <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" fixed="false"/>
+        <permission name="android.permission.GET_ACCOUNTS" fixed="false"/>
+        <permission name="android.permission.ACTIVITY_RECOGNITION" fixed="false"/>
         <permission name="android.permission.READ_EXTERNAL_STORAGE" fixed="false"/>
         <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="false"/>
         <permission name="android.permission.ACCESS_MEDIA_LOCATION" fixed="false"/>
