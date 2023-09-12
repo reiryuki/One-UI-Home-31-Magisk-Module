@@ -1,9 +1,11 @@
 MODPATH=${0%/*}
-API=`getprop ro.build.version.sdk`
 
 # log
 exec 2>$MODPATH/debug.log
 set -x
+
+# var
+API=`getprop ro.build.version.sdk`
 
 # property
 resetprop ro.build.version.sem 3101
@@ -47,7 +49,7 @@ if [ "$API" -ge 31 ]; then
   appops set $PKG MANAGE_MEDIA allow
 fi
 PKGOPS=`appops get $PKG`
-UID=`dumpsys package $PKG 2>/dev/null | grep -m 1 userId= | sed 's/    userId=//'`
+UID=`dumpsys package $PKG 2>/dev/null | grep -m 1 userId= | sed 's|    userId=||g'`
 if [ "$UID" -gt 9999 ]; then
   appops set --uid "$UID" LEGACY_STORAGE allow
   if [ "$API" -ge 29 ]; then

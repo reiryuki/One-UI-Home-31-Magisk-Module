@@ -1,3 +1,8 @@
+# boot mode
+if [ "$BOOTMODE" != true ]; then
+  abort "- Please install via Magisk/KernelSU app only!"
+fi
+
 # space
 ui_print " "
 
@@ -41,6 +46,17 @@ else
   ui_print " "
 fi
 
+# one ui core
+if [ ! -d /data/adb/modules_update/OneUICore ]\
+&& [ ! -d /data/adb/modules/OneUICore ]; then
+  ui_print "! One UI Core Magisk Module is not installed."
+  ui_print "  Please read github installation guide!"
+  abort
+else
+  rm -f /data/adb/modules/OneUICore/remove
+  rm -f /data/adb/modules/OneUICore/disable
+fi
+
 # optionals
 OPTIONALS=/sdcard/optionals.prop
 if [ ! -f $OPTIONALS ]; then
@@ -57,10 +73,10 @@ fi
 
 # cleaning
 ui_print "- Cleaning..."
-PKG=`cat $MODPATH/package.txt`
+PKGS=`cat $MODPATH/package.txt`
 if [ "$BOOTMODE" == true ]; then
-  for PKGS in $PKG; do
-    RES=`pm uninstall $PKGS 2>/dev/null`
+  for PKG in $PKGS; do
+    RES=`pm uninstall $PKG 2>/dev/null`
   done
 fi
 remove_sepolicy_rule
@@ -68,58 +84,90 @@ ui_print " "
 
 # function
 conflict() {
-for NAMES in $NAME; do
-  DIR=/data/adb/modules_update/$NAMES
+for NAME in $NAMES; do
+  DIR=/data/adb/modules_update/$NAME
   if [ -f $DIR/uninstall.sh ]; then
     sh $DIR/uninstall.sh
   fi
   rm -rf $DIR
-  DIR=/data/adb/modules/$NAMES
+  DIR=/data/adb/modules/$NAME
   rm -f $DIR/update
   touch $DIR/remove
-  FILE=/data/adb/modules/$NAMES/uninstall.sh
+  FILE=/data/adb/modules/$NAME/uninstall.sh
   if [ -f $FILE ]; then
     sh $FILE
     rm -f $FILE
   fi
-  rm -rf /metadata/magisk/$NAMES
-  rm -rf /mnt/vendor/persist/magisk/$NAMES
-  rm -rf /persist/magisk/$NAMES
-  rm -rf /data/unencrypted/magisk/$NAMES
-  rm -rf /cache/magisk/$NAMES
-  rm -rf /cust/magisk/$NAMES
+  rm -rf /metadata/magisk/$NAME
+  rm -rf /mnt/vendor/persist/magisk/$NAME
+  rm -rf /persist/magisk/$NAME
+  rm -rf /data/unencrypted/magisk/$NAME
+  rm -rf /cache/magisk/$NAME
+  rm -rf /cust/magisk/$NAME
 done
 }
 
 # conflict
-NAME=oneuilauncher
+NAMES=oneuilauncher
 conflict
+
+# function
+check_permission() {
+if ! pm list package | grep -q $PKG; then
+  ui_print "- Checking $NAME"
+  ui_print "  of $PKG..."
+  FILE=`find $MODPATH/system -type f -name $APP.apk`
+  RES=`pm install -g -i com.android.vending $FILE 2>/dev/null`
+  if pm list package | grep -q $PKG; then
+    if ! dumpsys package $PKG | grep -q "$NAME: granted=true"; then
+      ui_print "  ! You need to disable your Android Signature Verification"
+      ui_print "    first to use this recents provider, otherwise it will crash."
+      RES=`pm uninstall $PKG 2>/dev/null`
+      RECENTS=false
+      ui_print "  Changing one.recents to 0"
+      sed -i 's|^one.recents=1|one.recents=0|g' $OPTIONALS
+    fi
+  else
+    ui_print "  ! Failed."
+    ui_print "    Maybe insufficient storage."
+    RECENTS=false
+  fi
+  ui_print " "
+fi
+}
 
 # recents
 if [ "`grep_prop one.recents $OPTIONALS`" == 1 ]; then
   RECENTS=true
-  if [ "$API" == 30 ]; then
-    ui_print "- Using legacy $MODNAME version"
-    cp -rf $MODPATH/system_11/* $MODPATH/system
-    ui_print " "
-  elif [ "$API" -lt 30 ]; then
+  if [ "$API" -lt 30 ]; then
     ui_print "- $MODNAME recents provider doesn't support the current Android version"
     RECENTS=false
     ui_print " "
+  elif [ "$API" -ge 30 ] && [ "$API" -le 32 ]; then
+    APP=TouchWizHome_2017
+    PKG=com.sec.android.app.launcher
+    NAME=android.permission.MONITOR_INPUT
+    if [ "$BOOTMODE" == true ]; then
+      check_permission
+    fi
   fi
 else
   RECENTS=false
 fi
-rm -rf $MODPATH/system_11
 if [ "$RECENTS" == true ]; then
   ui_print "- $MODNAME recents provider will be activated"
   ui_print "  Quick Switch module will be disabled"
   touch /data/adb/modules/quickstepswitcher/disable
   touch /data/adb/modules/quickswitch/disable
-  sed -i 's/#r//g' $MODPATH/post-fs-data.sh
+  sed -i 's|#r||g' $MODPATH/post-fs-data.sh
   ui_print " "
 else
   rm -rf $MODPATH/system/product
+fi
+if [ "$RECENTS" == true ] && [ ! -d /product/overlay ]; then
+  ui_print "- Using /vendor/overlay/ instead of /product/overlay/"
+  mv -f $MODPATH/system/product $MODPATH/system/vendor
+  ui_print " "
 fi
 
 # function
@@ -137,7 +185,7 @@ fi
 DIR=/data/adb/modules/$MODID
 FILE=$DIR/module.prop
 if [ "`grep_prop data.cleanup $OPTIONALS`" == 1 ]; then
-  sed -i 's/^data.cleanup=1/data.cleanup=0/' $OPTIONALS
+  sed -i 's|^data.cleanup=1|data.cleanup=0|g' $OPTIONALS
   ui_print "- Cleaning-up $MODID data..."
   cleanup
   ui_print " "
@@ -190,22 +238,15 @@ fi
 
 # function
 hide_oat() {
-for APPS in $APP; do
+for APP in $APPS; do
   REPLACE="$REPLACE
-  `find $MODPATH/system -type d -name $APPS | sed "s|$MODPATH||"`/oat"
+  `find $MODPATH/system -type d -name $APP | sed "s|$MODPATH||g"`/oat"
 done
 }
 
 # hide
-APP="`ls $MODPATH/system/priv-app` `ls $MODPATH/system/app`"
+APPS="`ls $MODPATH/system/priv-app` `ls $MODPATH/system/app`"
 hide_oat
-
-# overlay
-if [ "$RECENTS" == true ] && [ ! -d /product/overlay ]; then
-  ui_print "- Using /vendor/overlay/ instead of /product/overlay/"
-  mv -f $MODPATH/system/product $MODPATH/system/vendor
-  ui_print " "
-fi
 
 # function
 check_library() {
