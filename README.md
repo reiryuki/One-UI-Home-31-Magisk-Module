@@ -21,7 +21,7 @@
 - Android 8 and up
 - Magisk or KernelSU installed
 - One UI Core Magisk Module installed https://github.com/reiryuki/One-UI-Core-Magisk-Module
-- If you are activating recents provider (READ Optionals bellow!) in Android 11 until 12.1, it requires AOSP sigantured ROM or disabled Android Signature Verifications in non-AOSP signatured ROM https://t.me/androidryukimodsdiscussions/58331.
+- If you are activating recents provider (READ Optionals bellow!) in Android 11 until 12.1, it requires AOSP signatured ROM or disabled Android Signature Verifications in non-AOSP signatured ROM https://t.me/androidryukimodsdiscussions/58331.
 
 ## Installation Guide & Download Link
 - Install One UI Core Magisk Module first: https://github.com/reiryuki/One-UI-Core-Magisk-Module
