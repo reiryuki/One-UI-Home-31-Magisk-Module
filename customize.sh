@@ -260,7 +260,7 @@ check_library() {
 NAME=com.samsung.device
 if [ "$BOOTMODE" == true ]\
 && ! pm list libraries | grep -q $NAME; then
-  echo 'rm -rf /data/user*/*/com.android.vending/*' >> $MODPATH/cleaner.sh
+  echo 'rm -rf /data/user*/"$UID"/com.android.vending/*' >> $MODPATH/cleaner.sh
   ui_print "- Play Store data will be cleared automatically on the next"
   ui_print "  reboot"
   ui_print " "
