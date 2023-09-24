@@ -14,6 +14,19 @@ if [ "$BOOTMODE" != true ]; then
   ui_print " "
 fi
 
+# optionals
+OPTIONALS=/sdcard/optionals.prop
+if [ ! -f $OPTIONALS ]; then
+  touch $OPTIONALS
+fi
+
+# debug
+if [ "`grep_prop debug.log $OPTIONALS`" == 1 ]; then
+  ui_print "- The install log will contain detailed information"
+  set -x
+  ui_print " "
+fi
+
 # run
 . $MODPATH/function.sh
 
@@ -55,12 +68,6 @@ if [ ! -d /data/adb/modules_update/OneUICore ]\
 else
   rm -f /data/adb/modules/OneUICore/remove
   rm -f /data/adb/modules/OneUICore/disable
-fi
-
-# optionals
-OPTIONALS=/sdcard/optionals.prop
-if [ ! -f $OPTIONALS ]; then
-  touch $OPTIONALS
 fi
 
 # sepolicy

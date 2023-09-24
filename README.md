@@ -25,6 +25,7 @@
 
 ## Installation Guide & Download Link
 - Install One UI Core Magisk Module first: https://github.com/reiryuki/One-UI-Core-Magisk-Module
+- If you want to activate the recents provider, READ Optionals bellow!
 - Install this module https://www.pling.com/p/1626997/ via Magisk app or KernelSU app or Recovery if Magisk installed
 - Reboot
 - If you are using KernelSU, you need to allow superuser list manually all package name listed in package.txt (and your home launcher app also) (enable show system apps) and reboot after
@@ -38,9 +39,7 @@
 - Android 13 AOSP ROM & CrDroid ROM
 
 ## Known Issues
-- Widgets list does not show up in Android 13 except a space is typed in the search bar
-- Recents provider stopped working if default home is not One UI Home after the search bar is pressed
-- Finder app does launch on the top of recents via search bar in Android 13
+- Widgets list does not show up in Android 13 except a space is typed at the search bar
 - Bug opening recents if using gesture navigation
 
 ## Optionals & Troubleshootings
