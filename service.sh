@@ -8,9 +8,37 @@ set -x
 API=`getprop ro.build.version.sdk`
 
 # property
-resetprop ro.build.version.sem 3101
-resetprop ro.build.version.sep 130000
+if [ "$API" == 26 ]; then
+  resetprop ro.build.version.sem 2601
+  resetprop ro.build.version.sep 90000
+elif [ "$API" == 27 ]; then
+  resetprop ro.build.version.sem 2701
+  resetprop ro.build.version.sep 90500
+elif [ "$API" == 28 ]; then
+  resetprop ro.build.version.sem 2801
+  resetprop ro.build.version.sep 100000
+elif [ "$API" == 29 ]; then
+  resetprop ro.build.version.sem 2903
+  resetprop ro.build.version.sep 110500
+elif [ "$API" == 30 ]; then
+  resetprop ro.build.version.sem 3002
+  resetprop ro.build.version.sep 120500
+elif [ "$API" == 31 ]; then
+  resetprop ro.build.version.sem 3101
+  resetprop ro.build.version.sep 130000
+elif [ "$API" == 32 ]; then
+  resetprop ro.build.version.sem 3201
+  resetprop ro.build.version.sep 130000 # estimate
+elif [ "$API" == 33 ]; then
+  resetprop ro.build.version.sem 3301
+  resetprop ro.build.version.sep 140100
+elif [ "$API" -ge 34 ]; then
+  resetprop ro.build.version.sem 3401 # estimate
+  resetprop ro.build.version.sep 150100 # estimate
+fi
 resetprop ro.product_ship true
+resetprop ro.samsung.desktop.mode 0
+resetprop ro.samsung.display.device.type 0
 
 # wait
 until [ "`getprop sys.boot_completed`" == "1" ]; do
@@ -66,7 +94,17 @@ appops set $PKG GET_USAGE_STATS allow
 pm grant $PKG android.permission.READ_PHONE_STATE
 pm grant $PKG android.permission.CALL_PHONE
 pm grant $PKG android.permission.READ_CONTACTS
-grant_permission
+if [ "$API" -ge 33 ]; then
+  appops set $PKG ACCESS_RESTRICTED_SETTINGS allow
+fi
+if [ "$API" -ge 30 ]; then
+  appops set $PKG AUTO_REVOKE_PERMISSIONS_IF_UNUSED ignore
+fi
+PKGOPS=`appops get $PKG`
+UID=`dumpsys package $PKG 2>/dev/null | grep -m 1 userId= | sed 's|    userId=||g'`
+if [ "$UID" -gt 9999 ]; then
+  UIDOPS=`appops get --uid "$UID"`
+fi
 
 # grant
 PKG=com.samsung.android.rubin.app

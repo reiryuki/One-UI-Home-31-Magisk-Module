@@ -48,9 +48,9 @@ sepolicy_sh
 # list
 (
 PKGS="`cat $MODPATH/package.txt`
-       com.samsung.android.app.galaxyfinder:receiver
-       com.samsung.android.app.galaxyfinder:local
-       com.samsung.android.app.galaxyfinder:appservice"
+      com.samsung.android.app.galaxyfinder:receiver
+      com.samsung.android.app.galaxyfinder:local
+      com.samsung.android.app.galaxyfinder:appservice"
 for PKG in $PKGS; do
   magisk --denylist rm $PKG
   magisk --sulist add $PKG

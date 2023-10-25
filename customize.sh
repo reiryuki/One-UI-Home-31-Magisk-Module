@@ -120,12 +120,12 @@ conflict
 
 # function
 check_permission() {
-if ! pm list package | grep -q $PKG; then
+if ! appops get $PKG > /dev/null 2>&1; then
   ui_print "- Checking $NAME"
   ui_print "  of $PKG..."
   FILE=`find $MODPATH/system -type f -name $APP.apk`
   RES=`pm install -g -i com.android.vending $FILE 2>/dev/null`
-  if pm list package | grep -q $PKG; then
+  if appops get $PKG > /dev/null 2>&1; then
     if ! dumpsys package $PKG | grep -q "$NAME: granted=true"; then
       ui_print "  ! You need to disable your Android Signature Verification"
       ui_print "    first to use this recents provider, otherwise it will crash."
@@ -142,6 +142,23 @@ if ! pm list package | grep -q $PKG; then
   ui_print " "
 fi
 }
+
+# desktop
+FILE=$MODPATH/service.sh
+if [ "`grep_prop one.desktop $OPTIONALS`" == 1 ]; then
+  ui_print "- Enables desktop mode"
+  sed -i 's|ro.samsung.desktop.mode 0|ro.samsung.desktop.mode 1|g' $FILE
+  ui_print " "
+fi
+
+# display device type
+FILE=$MODPATH/service.sh
+DDT=`grep_prop one.ddt $OPTIONALS`
+if [ "$DDT" ]; then
+  ui_print "- Sets display device type to $DDT"
+  sed -i "s|ro.samsung.display.device.type 0|ro.samsung.display.device.type $DDT|g" $FILE
+  ui_print " "
+fi
 
 # recents
 if [ "`grep_prop one.recents $OPTIONALS`" == 1 ]; then
@@ -191,12 +208,14 @@ fi
 # cleanup
 DIR=/data/adb/modules/$MODID
 FILE=$DIR/module.prop
+PREVMODNAME=`grep_prop name $FILE`
 if [ "`grep_prop data.cleanup $OPTIONALS`" == 1 ]; then
   sed -i 's|^data.cleanup=1|data.cleanup=0|g' $OPTIONALS
   ui_print "- Cleaning-up $MODID data..."
   cleanup
   ui_print " "
-elif [ -d $DIR ] && ! grep -q "$MODNAME" $FILE; then
+elif [ -d $DIR ]\
+&& [ "$PREVMODNAME" != "$MODNAME" ]; then
   ui_print "- Different version detected"
   ui_print "  Cleaning-up $MODID data..."
   cleanup
@@ -255,17 +274,7 @@ done
 APPS="`ls $MODPATH/system/priv-app` `ls $MODPATH/system/app`"
 hide_oat
 
-# function
-check_library() {
-NAME=com.samsung.device
-if [ "$BOOTMODE" == true ]\
-&& ! pm list libraries | grep -q $NAME; then
-  echo 'rm -rf /data/user*/"$UID"/com.android.vending/*' >> $MODPATH/cleaner.sh
-  ui_print "- Play Store data will be cleared automatically on the next"
-  ui_print "  reboot"
-  ui_print " "
-fi
-}
+
 
 
 

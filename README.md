@@ -9,7 +9,6 @@
 
 ## Sources
 - https://apkmirror.com com.sec.android.app.launcher, com.samsung.android.rubin.app, com.samsung.android.app.galaxyfinder, & com.sec.android.provider.badge by Samsung Electronics Co., Ltd.
-- com.samsung.device.jar: https://dumps.tadiphone.dev/dumps/samsung/p3s p3sxxx-user-12-SP1A.210812.003-G998BXXU3ZUID-release-keys
 - BadgeSettings.apk by @KaldirimMuhendisi
 
 ## Screenshots
@@ -19,12 +18,13 @@
 - NOT in One UI nor Touchwiz ROM
 - Android 8 and up
 - Magisk or KernelSU installed
-- One UI Core Magisk Module v0.2 or above installed https://github.com/reiryuki/One-UI-Core-Magisk-Module
-- If you are activating recents provider (READ Optionals bellow!) in Android 11 until 12.1, it requires AOSP signatured ROM or disabled Android Signature Verifications in non-AOSP signatured ROM https://t.me/androidryukimodsdiscussions/58331.
+- One UI Core Magisk Module v0.3 or above installed https://github.com/reiryuki/One-UI-Core-Magisk-Module
 - Add media page to Home screen option requires Google app installed https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox or ported Samsung News/Free/Daily/Bixby Home app (com.samsung.android.app.spage) if it's exist.
+- Recents provider requires Android 11 and up
+- If you are activating recents provider (READ Optionals bellow!) in Android 11 until 12.1, it requires AOSP signatured ROM or disabled Android Signature Verifications in non-AOSP signatured ROM https://t.me/androidryukimodsdiscussions/58331.
 
 ## Installation Guide & Download Link
-- Install One UI Core Magisk Module v0.2 or above first: https://github.com/reiryuki/One-UI-Core-Magisk-Module
+- Install One UI Core Magisk Module v0.3 or above first: https://github.com/reiryuki/One-UI-Core-Magisk-Module
 - If you want to activate the recents provider, READ Optionals bellow!
 - Install this module https://www.pling.com/p/1626997/ via Magisk app or KernelSU app or Recovery if Magisk installed
 - Reboot
@@ -40,7 +40,6 @@
 - Android 13 AOSP ROM & CrDroid ROM
 
 ## Known Issues
-- Blank shortcut icons
 - Widgets list does not show up in Android 13 except a space is typed at the search bar
 - Bug opening recents if using gesture navigation
 
