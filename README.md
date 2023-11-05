@@ -1,4 +1,4 @@
-# One UI Home Magisk Module
+# One UI Home 31 Magisk Module
 
 ## DISCLAIMER
 - One UI apps and blobs are owned by Samsung™.
@@ -8,8 +8,8 @@
 - Home launcher app by Samsung Electronics Co., Ltd. ported and integrated as a Magisk Module for all supported and rooted devices with Magisk
 
 ## Sources
-- https://apkmirror.com com.sec.android.app.launcher, com.samsung.android.rubin.app, com.samsung.android.app.galaxyfinder, & com.sec.android.provider.badge by Samsung Electronics Co., Ltd.
-- BadgeSettings.apk by @KaldirimMuhendisi
+- https://apkmirror.com com.sec.android.app.launcher (target SDK 31), com.samsung.android.rubin.app, com.samsung.android.app.galaxyfinder, & com.sec.android.provider.badge by Samsung Electronics Co., Ltd.
+- BadgeSettings.apk by frknkrc44
 
 ## Screenshots
 - https://t.me/androidryukimods/310
@@ -44,9 +44,9 @@
 - Bug opening recents if using gesture navigation
 
 ## Optionals & Troubleshootings
-- https://t.me/androidryukimodsdiscussions/60861
-- https://t.me/androidryukimodsdiscussions/29836
 - https://t.me/androidryukimodsdiscussions/46153
+- Global: https://t.me/androidryukimodsdiscussions/60861
+- Global: https://t.me/androidryukimodsdiscussions/29836
 
 ## Support & Bug Report
 - https://t.me/androidryukimodsdiscussions/2618
