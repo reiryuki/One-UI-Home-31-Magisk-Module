@@ -45,30 +45,6 @@ chmod 0755 $MODPATH/*/libmagiskpolicy.so
 FILE=$MODPATH/sepolicy.pfsd
 sepolicy_sh
 
-# list
-(
-PKGS="`cat $MODPATH/package.txt`
-      com.samsung.android.app.galaxyfinder:receiver
-      com.samsung.android.app.galaxyfinder:local
-      com.samsung.android.app.galaxyfinder:appservice"
-for PKG in $PKGS; do
-  magisk --denylist rm $PKG
-  magisk --sulist add $PKG
-done
-FILE=$MODPATH/tmp_file
-magisk --hide sulist 2>$FILE
-if [ "`cat $FILE`" == 'SuList is enforced' ]; then
-  for PKG in $PKGS; do
-    magisk --hide add $PKG
-  done
-else
-  for PKG in $PKGS; do
-    magisk --hide rm $PKG
-  done
-fi
-rm -f $FILE
-) 2>/dev/null
-
 # conflict
 #rtouch /data/adb/modules/quickstepswitcher/disable
 #rtouch /data/adb/modules/quickswitch/disable
@@ -98,7 +74,7 @@ fi
 FILE=$MODPATH/cleaner.sh
 if [ -f $FILE ]; then
   . $FILE
-  mv -f $FILE $FILE\.txt
+  mv -f $FILE $FILE.txt
 fi
 
 
