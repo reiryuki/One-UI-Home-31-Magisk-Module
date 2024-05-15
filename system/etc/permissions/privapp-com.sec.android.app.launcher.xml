@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <permissions>
     <privapp-permissions package="com.sec.android.app.launcher">
+        <permission name="android.permission.STATUS_BAR"/>
+        <permission name="android.permission.SET_UNRESTRICTED_GESTURE_EXCLUSION"/>
+        <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+        <permission name="android.permission.GLOBAL_SEARCH"/>
+        <permission name="android.permission.GET_ACCOUNTS_PRIVILEGED"/>
+        <permission name="android.permission.STOP_APP_SWITCHES"/>
+        <permission name="android.permission.SET_PROCESS_LIMIT"/>
         <permission name="android.permission.REGISTER_STATS_PULL_ATOM"/>
         <permission name="android.permission.ALLOW_SLIPPERY_TOUCHES"/>
         <permission name="android.permission.READ_SEARCH_INDEXABLES"/>
