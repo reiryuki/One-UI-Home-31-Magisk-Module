@@ -8,7 +8,6 @@ set -x
 API=`getprop ro.build.version.sdk`
 
 # prop
-resetprop -n ro.samsung.desktop.mode 0
 resetprop -n ro.samsung.display.device.type 0
 
 # wait
