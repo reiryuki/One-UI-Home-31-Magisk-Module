@@ -55,12 +55,6 @@ DIRS=`find $MODPATH/vendor\
 for DIR in $DIRS; do
   chown 0.2000 $DIR
 done
-if [ -L $MODPATH/system/product ]\
-&& [ -d $MODPATH/product ]; then
-  chcon -R u:object_r:vendor_overlay_file:s0 $MODPATH/product/overlay
-else
-  chcon -R u:object_r:vendor_overlay_file:s0 $MODPATH/system/product/overlay
-fi
 if [ -L $MODPATH/system/vendor ]\
 && [ -d $MODPATH/vendor ]; then
   chcon -R u:object_r:vendor_file:s0 $MODPATH/vendor
