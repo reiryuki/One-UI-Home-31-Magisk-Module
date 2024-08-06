@@ -1,6 +1,6 @@
 # boot mode
 if [ "$BOOTMODE" != true ]; then
-  abort "- Please install via Magisk/KernelSU app only!"
+  abort "! Please install via Magisk/KernelSU app only!"
 fi
 
 # space
@@ -8,6 +8,7 @@ ui_print " "
 
 # var
 UID=`id -u`
+[ ! "$UID" ] && UID=0
 
 # log
 if [ "$BOOTMODE" != true ]; then
@@ -70,8 +71,7 @@ else
 fi
 
 # one ui core
-if [ ! -d /data/adb/modules_update/OneUICore ]\
-&& [ ! -d /data/adb/modules/OneUICore ]; then
+if [ ! -d /data/adb/modules/OneUICore ]; then
   ui_print "! One UI Core Magisk Module is not installed."
   ui_print "  Please read github installation guide!"
   abort

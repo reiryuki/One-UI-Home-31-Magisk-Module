@@ -39,13 +39,6 @@
 - If you want to use Add media page to Home screen option, you need to install Google app https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox or ported Samsung News/Free/Daily/Bixby Home app (com.samsung.android.app.spage) if it's exist.
 - If you want to change some configurations, read Troubleshootings bellow!
 
-## Tested on
-- Android 11 DotOS ROM
-- Android 12 AncientOS ROM
-- Android 12.1 Nusantara ROM
-- Android 13 AOSP ROM & CrDroid ROM
-- Android 14 LineageOS ROM
-
 ## Known Issues
 - Widgets list does not show up in Android 13 and above except a space is typed at the search bar
 - Glitches in Android 14
