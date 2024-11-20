@@ -86,9 +86,8 @@ PKG=com.sec.android.app.launcher
 appops set $PKG SYSTEM_ALERT_WINDOW allow
 appops set $PKG GET_USAGE_STATS allow
 pm grant $PKG android.permission.READ_PHONE_STATE
-pm grant $PKG android.permission.CALL_PHONE 2>/dev/null
+pm grant $PKG android.permission.CALL_PHONE
 pm grant $PKG android.permission.READ_CONTACTS
-grant_permission
 
 # grant
 PKG=com.samsung.android.rubin.app
