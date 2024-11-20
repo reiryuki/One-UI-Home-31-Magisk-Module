@@ -28,7 +28,6 @@
         <permission name="com.sec.android.diagmonagent.permission.PROVIDER"/>
         <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
         <permission name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS"/>
-        <permission name="android.permission.SET_WALLPAPER"/>
         <permission name="android.permission.START_TASKS_FROM_RECENTS"/>
         <!-- Android 9 and bellow -->
         <permission name="android.permission.READ_FRAME_BUFFER"/>
