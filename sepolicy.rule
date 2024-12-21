@@ -11,5 +11,6 @@ allow { system_app priv_app platform_app untrusted_app_29 untrusted_app_27 untru
 
 # file
 allow { system_app priv_app platform_app untrusted_app_29 untrusted_app_27 untrusted_app } bluetooth_prop file read
+allow { system_app priv_app platform_app untrusted_app_29 untrusted_app_27 untrusted_app } proc_filesystems file open
 
 
