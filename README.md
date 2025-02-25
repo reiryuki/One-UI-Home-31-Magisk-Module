@@ -8,7 +8,7 @@
 - Home launcher app by Samsung Electronics Co., Ltd. ported and integrated as a Magisk Module for all supported and rooted devices with Magisk
 
 ## Sources
-- https://apkmirror.com com.sec.android.app.launcher (target SDK 31), com.samsung.android.rubin.app, com.samsung.android.app.galaxyfinder, & com.sec.android.provider.badge by Samsung Electronics Co., Ltd.
+- https://apkmirror.com com.sec.android.app.launcher (target SDK 31), com.samsung.android.app.galaxyfinder, & com.sec.android.provider.badge by Samsung Electronics Co., Ltd.
 - BadgeSettings.apk by @KaldirimMuhendisi
 - libmagiskpolicy.so: Kitsune Mask R6687BB53
 
@@ -45,13 +45,16 @@
 `appops set com.sec.android.app.launcher SYSTEM_ALERT_WINDOW allow`
 
 
-## Optionals & Troubleshootings
-- https://t.me/androidryukimodsdiscussions/46153
+## Optionals
+- https://t.me/ryukinotes/33
 - Global: https://t.me/ryukinotes/35
+
+## Troubleshootings
+- https://t.me/ryukinotes/33
 - Global: https://t.me/ryukinotes/34
 
 ## Support & Bug Report
-- https://t.me/androidryukimodsdiscussions/2618
+- https://t.me/ryukinotes/54
 - If you don't do above, issues will be closed immediately
 
 ## Credits and contributors
