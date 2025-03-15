@@ -149,7 +149,6 @@ if ! appops get $PKG > /dev/null 2>&1; then
       RECENTS=false
       ui_print "  Changing oneui.recents to 0"
       sed -i 's|^oneui.recents=1|oneui.recents=0|g' $OPTIONALS
-      sed -i 's|^one.recents=1|one.recents=0|g' $OPTIONALS
     fi
   else
     ui_print "  ! Failed."
@@ -160,21 +159,8 @@ if ! appops get $PKG > /dev/null 2>&1; then
 fi
 }
 
-# display device type
-FILE=$MODPATH/service.sh
-DDT=`grep_prop oneui.ddt $OPTIONALS`
-if [ ! "$DDT" ]; then
-  DDT=`grep_prop one.ddt $OPTIONALS`
-fi
-if [ "$DDT" ]; then
-  ui_print "- Sets display device type to $DDT"
-  sed -i "s|ro.samsung.display.device.type 0|ro.samsung.display.device.type $DDT|g" $FILE
-  ui_print " "
-fi
-
 # recents
-if [ "`grep_prop oneui.recents $OPTIONALS`" == 1 ]\
-|| [ "`grep_prop one.recents $OPTIONALS`" == 1 ]; then
+if [ "`grep_prop oneui.recents $OPTIONALS`" == 1 ]; then
   RECENTS=true
   if [ "$API" -lt 30 ]; then
     ui_print "- $MODNAME recents provider doesn't support the current Android version"
