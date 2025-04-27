@@ -22,7 +22,7 @@
 - One UI Core Magisk Module installed https://github.com/reiryuki/One-UI-Core-Magisk-Module
 - Add media page to Home screen option requires Google app installed https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox or ported Samsung News/Free/Daily/Bixby Home app (com.samsung.android.app.spage) if it's exist.
 - Recents provider requires Android 12 (SDK 31) and up
-- If you are activating recents provider (READ Optionals bellow!) in Android 11 (SDK 30) until 12.1 (SDK 32), it requires AOSP signatured ROM or disabled Android Signature Verifications in non-AOSP signatured ROM https://t.me/androidryukimodsdiscussions/58331.
+- If you are activating recents provider (READ Optionals bellow!) in Android 11 (SDK 30) until 12.1 (SDK 32), it requires AOSP signatured ROM or disabled Android Signature Verifications in non-AOSP signatured ROM https://t.me/ryukinotes/81.
 - Full gesture navigation and double tap to sleep requires root permission (except in AOSP signatured ROM)
 
 ## Installation Guide & Download Link
