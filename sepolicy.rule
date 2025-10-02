@@ -8,6 +8,7 @@ allow init { system_file system_lib_file vendor_file vendor_configs_file vendor_
 
 # dir
 allow { system_app priv_app platform_app untrusted_app_29 untrusted_app_27 untrusted_app } { blkio_dev sysfs_batteryinfo sysfs_battery_supply } dir search
+allow { system_app priv_app platform_app untrusted_app_29 untrusted_app_27 untrusted_app } user_profile_data_file dir read
 
 # file
 allow { system_app priv_app platform_app untrusted_app_29 untrusted_app_27 untrusted_app } bluetooth_prop file read
