@@ -1,7 +1,7 @@
 id=OneUIHome
 name=One UI Home 31
-version=v3.0
-versionCode=30
+version=v3.1
+versionCode=31
 author=Rei Ryuki the Fixer
 description=Home launcher app target SDK 31 by Samsung Electronics Co., Ltd. ported for any Android 8.0 (SDK 26) until 12.1 (SDK 32).
 
