@@ -121,12 +121,13 @@ for NAME in $NAMES; do
     sh $FILE
     rm -f $FILE
   fi
-  rm -rf /metadata/magisk/$NAME
-  rm -rf /mnt/vendor/persist/magisk/$NAME
-  rm -rf /persist/magisk/$NAME
-  rm -rf /data/unencrypted/magisk/$NAME
-  rm -rf /cache/magisk/$NAME
-  rm -rf /cust/magisk/$NAME
+  rm -rf /metadata/magisk/$NAME\
+   /mnt/vendor/persist/magisk/$NAME\
+   /persist/magisk/$NAME\
+   /data/unencrypted/magisk/$NAME\
+   /cache/magisk/$NAME\
+   /cust/magisk/$NAME\
+   /klogdump/magisk/$NAME
 done
 }
 

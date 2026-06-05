@@ -5,15 +5,59 @@
 - The MIT license specified here is for the Magisk Module only, not for One UI apps and blobs.
 
 ## Descriptions
-- Home launcher app by Samsung Electronics Co., Ltd. ported and integrated as a Magisk Module for all supported and rooted devices with Magisk
+Home launcher app by Samsung Electronics Co., Ltd. ported and integrated as a Magisk Module for all supported and rooted devices with Magisk
 
 ## Sources
 - https://apkmirror.com com.sec.android.app.launcher (target SDK 31), com.samsung.android.app.galaxyfinder, & com.sec.android.provider.badge by Samsung Electronics Co., Ltd.
 - BadgeSettings.apk by @KaldirimMuhendisi
-- libmagiskpolicy.so: Kitsune Mask R6687BB53
+- libmagiskpolicy.so: Magisk (stable) 30.7 (30700)
+
+## Changelog
+
+v3.4
+- Update libmagiskpolicy.so from Magisk (stable) 30.7 (30700)
+
+v3.3
+- Fix wrong target in latest KernelSU
+- Fix denial if executing default.sh
+
+v3.2
+- Fix a crash in foldable mode
+- Re-fix some methods
+
+v3.1
+- Fix some methods
+- Add a warning if root is not granted in KernelSU
+
+v3.0
+- Fix a crash
+- Revert layout params alpha to 1
+- Fix selinux denial
+
+v2.9
+- Re-fix conflict with PixelConfigOverlayCommon.apk
+
+v2.8
+- Does not use root to swipe up to home in full gesture
+
+v2.7
+- Removes conflicted overlay PixelConfigOverlayCommon.apk systemlessly if oneui.recents=1
+
+v2.6
+- Move oneui.ddt optional to One UI Core Magisk Module
+- Fix selinux denials
+- Remove deprecated optional
+
+v2.5
+- Fix crashes
+- Fix some methods
+- Update BadgeProvider_N.apk v2.1.00.17
+- Remove RubinVersion29.apk
+- Add Action button to clear apps caches
+- Fix bug in uninstall.sh
 
 ## Screenshots
-- https://t.me/androidryukimods/310
+https://t.me/androidryukimods/310
 
 ## Requirements
 - NOT in One UI nor Touchwiz ROM
@@ -28,10 +72,10 @@
 ## Installation Guide & Download Link
 - Remove any other else One UI Home Magisk module with different name (no need to remove if it's the same name)
 - Reboot
-- If you are using KernelSU, you need to disable Unmount Modules by Default in KernelSU app settings and install https://github.com/KernelSU-Modules-Repo/meta-overlayfs first
+- If you are using KernelSU, you need to disable Unmount Modules by Default in KernelSU app settings and install https://github.com/KernelSU-Modules-Repo/meta-overlayfs or https://github.com/KernelSU-Modules-Repo/magic_mount_rs or https://github.com/KernelSU-Modules-Repo/hybrid_mount first depending on ROM compatibility
 - Install One UI Core Magisk Module first: https://github.com/reiryuki/One-UI-Core-Magisk-Module
 - If you want to activate the recents provider, READ Optionals bellow!
-- Install this module https://www.pling.com/p/1626997/ via Magisk app or Kitsune Mask app or KernelSU app or Apatch app or Recovery if Magisk or Kitsune Mask installed
+- Install this module via Magisk app or Kitsune Mask app or KernelSU app or Apatch app or Recovery if Magisk or Kitsune Mask installed
 - Reboot
 - If you are using KernelSU, you need to allow superuser list manually all package name listed in package.txt (enable show system apps) and reboot afterwards
 - Change your default home to this launcher via Settings app (or you can copy the content of default.sh and paste it to Terminal/Termux app. Type su and grant root first!)
@@ -63,6 +107,6 @@
 - You can contribute ideas about this Magisk Module here: https://t.me/androidappsportdevelopment
 
 ## Sponsors
-- https://t.me/ryukinotes/25
+https://t.me/ryukinotes/25
 
 
