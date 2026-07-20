@@ -1,4 +1,4 @@
-[ "$MODPATH" ] && MODPATH=${0%/*}
+[ ! "$MODPATH" ] && MODPATH=${0%/*}
 UID=`id -u`
 
 # run
@@ -10,9 +10,5 @@ PKGS=`cat $MODPATH/package.txt`
 for PKG in $PKGS; do
   rm -rf /data/user*/"$UID"/$PKG/cache/*
 done
-
-
-
-
 
 

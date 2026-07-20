@@ -137,12 +137,12 @@ conflict
 
 # function
 check_permission() {
-if ! appops get $PKG > /dev/null 2>&1; then
+if ! appops get $PKG >/dev/null 2>&1; then
   ui_print "- Checking $NAME"
   ui_print "  of $PKG..."
   FILE=`find $MODPATH/system -type f -name $APP.apk`
   RES=`pm install -g -i com.android.vending $FILE 2>/dev/null`
-  if appops get $PKG > /dev/null 2>&1; then
+  if appops get $PKG >/dev/null 2>&1; then
     if ! dumpsys package $PKG | grep -q "$NAME: granted=true"; then
       ui_print "  ! You need to disable your Android Signature Verification"
       ui_print "    first to use this recents provider, otherwise it will crash."
@@ -562,7 +562,7 @@ for FILE in $FILES; do
     LIST=`cat $FILE | sed 's|><|>\n<|g'`
     RES=`echo "$LIST" | grep -A$COUNT '<package name="com.sec.android.app.launcher">'`
     until echo "$RES" | grep -q '</package>'; do
-      COUNT=`expr $COUNT + 1`
+      COUNT=$((COUNT + 1))
       RES=`echo "$LIST" | grep -A$COUNT '<package name="com.sec.android.app.launcher">'`
     done
     } 2>/dev/null
