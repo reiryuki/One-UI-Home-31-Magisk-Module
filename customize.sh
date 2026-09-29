@@ -688,7 +688,23 @@ done
 #patch_runtime_permisions
 #ui_print " "
 
-
+# prepare
+PKG=com.sec.android.app.launcher
+DIR=/storage/emulated/"$UID"/Android/data/$PKG/files
+DIR2=/storage/emulated/"$UID"/Android/data/$PKG/cache
+PKG=com.samsung.android.app.galaxyfinder
+DIR3=/storage/emulated/"$UID"/Android/data/$PKG/files
+DIR4=/storage/emulated/"$UID"/Android/data/$PKG/cache
+ui_print "- Creating directories:"
+ui_print "  $DIR"
+mkdir -p $DIR
+ui_print "  $DIR2"
+mkdir -p $DIR2
+ui_print "  $DIR3"
+mkdir -p $DIR3
+ui_print "  $DIR4"
+mkdir -p $DIR4
+ui_print " "
 
 
 
