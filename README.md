@@ -4,17 +4,34 @@
 - One UI apps and blobs are owned by Samsung™.
 - The MIT license specified here is for the Magisk Module only, not for One UI apps and blobs.
 
-## Descriptions
+## Description
 Home launcher app by Samsung Electronics Co., Ltd. ported and integrated as a Magisk Module for all supported and rooted devices with Magisk
 
 ## Sources
 - https://apkmirror.com com.sec.android.app.launcher (target SDK 31), com.samsung.android.app.galaxyfinder, & com.sec.android.provider.badge by Samsung Electronics Co., Ltd.
 - BadgeSettings.apk by @KaldirimMuhendisi
-- libmagiskpolicy.so: Magisk (stable) 30.7 (30700)
+- libmagiskpolicy.so: Magisk (debug) 31.0 (31000)
 
-## Changelog
+## Screenshots
+https://t.me/androidryukimods/310
 
-v3.7
+## Requirements
+- NOT in One UI nor Touchwiz ROM
+- Android 8.0 (SDK 26) until 12.1 (SDK 32)
+- Magisk or Kitsune Mask or KernelSU or Apatch installed
+- One UI Core Magisk Module installed https://github.com/reiryuki/One-UI-Core-Magisk-Module
+- Add media page to Home screen option requires Google app installed https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox or ported Samsung News/Free/Daily/Bixby Home app (com.samsung.android.app.spage) if it's exist.
+- Recents provider requires Android 12 (SDK 31) and up
+- If you are activating recents provider (READ Optionals bellow!) in Android 11 (SDK 30) until 12.1 (SDK 32), it requires AOSP signatured ROM or disabled Android Signature Verifications in non-AOSP signatured ROM https://t.me/ryukinotes/81.
+- Full gesture navigation and double tap to sleep requires root permission (except in AOSP signatured ROM)
+
+## Download Links and Changelog
+
+v3.8 https://github.com/reiryuki/One-UI-Home-31-Magisk-Module
+- Fix semDisplayDeviceType method using createConfigurationContext
+- Update libmagiskpolicy.so from Magisk (debug) 31.0 (31000)
+
+v3.7 https://move2link.co/ce1fdaa
 - Fix crashes NullPointerException
 - Prepare /storage/emulated/"$UID"/Android/data/$PKG/ directories
 
@@ -50,29 +67,16 @@ v3.0
 v2.9
 - Re-fix conflict with PixelConfigOverlayCommon.apk
 
-v2.8
-- Does not use root to swipe up to home in full gesture
+## Download Tutorial
+https://t.me/ryukinotes/97
 
-## Screenshots
-https://t.me/androidryukimods/310
-
-## Requirements
-- NOT in One UI nor Touchwiz ROM
-- Android 8.0 (SDK 26) until 12.1 (SDK 32)
-- Magisk or Kitsune Mask or KernelSU or Apatch installed
-- One UI Core Magisk Module installed https://github.com/reiryuki/One-UI-Core-Magisk-Module
-- Add media page to Home screen option requires Google app installed https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox or ported Samsung News/Free/Daily/Bixby Home app (com.samsung.android.app.spage) if it's exist.
-- Recents provider requires Android 12 (SDK 31) and up
-- If you are activating recents provider (READ Optionals bellow!) in Android 11 (SDK 30) until 12.1 (SDK 32), it requires AOSP signatured ROM or disabled Android Signature Verifications in non-AOSP signatured ROM https://t.me/ryukinotes/81.
-- Full gesture navigation and double tap to sleep requires root permission (except in AOSP signatured ROM)
-
-## Installation Guide & Download Link
+## Installation Guide
 - Remove any other else One UI Home Magisk module with different name (no need to remove if it's the same name)
 - Reboot
 - If you are using KernelSU, you need to disable Unmount Modules by Default in KernelSU app settings and install https://github.com/KernelSU-Modules-Repo/meta-overlayfs or https://github.com/KernelSU-Modules-Repo/magic_mount_rs or https://github.com/KernelSU-Modules-Repo/hybrid_mount or https://github.com/maxsteeel/nomount first depending on ROM compatibility
 - Install One UI Core Magisk Module first: https://github.com/reiryuki/One-UI-Core-Magisk-Module
 - If you want to activate the recents provider, READ Optionals bellow!
-- Install this module https://move2link.co/ce1fdaa via Magisk app or Kitsune Mask app or KernelSU app or Apatch app or Recovery if Magisk or Kitsune Mask installed
+- Install this module via Magisk app or Kitsune Mask app or KernelSU app or Apatch app or Recovery if Magisk or Kitsune Mask installed
 - Reboot
 - If you are using KernelSU, you need to allow superuser list manually all package name listed in package.txt (enable show system apps) and reboot afterwards
 - Change your default home to this launcher via Settings app (or you can copy the content of default.sh and paste it to Terminal/Termux app. Type su and grant root first!)
@@ -86,9 +90,6 @@ https://t.me/androidryukimods/310
 `appops set com.sec.android.app.launcher SYSTEM_ALERT_WINDOW allow`
 
 
-## Download Tutorial
-https://t.me/ryukinotes/97
-
 ## Optionals
 - https://t.me/ryukinotes/33
 - Global: https://t.me/ryukinotes/35
@@ -97,7 +98,7 @@ https://t.me/ryukinotes/97
 - https://t.me/ryukinotes/33
 - Global: https://t.me/ryukinotes/34
 
-## Support & Bug Report
+## Support and Bug Report
 - https://t.me/ryukinotes/54
 - If you don't do above, issues will be closed immediately
 
@@ -106,7 +107,7 @@ https://t.me/ryukinotes/97
 - https://t.me/androidryukimodsdiscussions
 - https://t.me/androidappsportdevelopment
 
-## Sponsors
+## Sponsors and Donation
 https://t.me/ryukinotes/25
 
 
